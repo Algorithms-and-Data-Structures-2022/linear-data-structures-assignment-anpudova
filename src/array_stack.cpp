@@ -71,14 +71,13 @@ namespace assignment {
   bool ArrayStack::Resize(int new_capacity) {
     if (capacity_ >= new_capacity) {
       return false;
-    } else {
-      int* temp = new int[new_capacity];
-      std::copy(data_, data_ + size_, temp);
-      delete data_;
-      data_ = temp;
-      capacity_ = new_capacity;
-      return true;
     }
+    int* temp = new int[new_capacity];
+    std::copy(data_, data_ + size_, temp);
+    delete data_;
+    data_ = temp;
+    capacity_ = new_capacity;
+    return true;
   }
 
   // ДЛЯ ТЕСТИРОВАНИЯ
@@ -104,5 +103,4 @@ namespace assignment {
 
     return {data_, data_ + capacity_};
   }
-
 }
