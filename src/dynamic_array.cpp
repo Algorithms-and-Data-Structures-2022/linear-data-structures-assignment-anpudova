@@ -156,4 +156,4 @@ namespace assignment {
     return {data_, data_ + capacity_};
   }
 
-}  // namespace assignment
+}
