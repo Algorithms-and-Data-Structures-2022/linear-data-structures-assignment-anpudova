@@ -11,7 +11,6 @@ namespace assignment {
     if (size_ == 0) {
       front_ = n;
       back_ = n;
-      size_++;
     } else {
       back_->next = n;
       back_ = n;
@@ -23,8 +22,7 @@ namespace assignment {
     if (size_ == 0) {
       return false;
     }
-    Node* n = front_;
-    front_ = n->next;
+    front_ = front_->next;
     size_--;
     return true;
   }

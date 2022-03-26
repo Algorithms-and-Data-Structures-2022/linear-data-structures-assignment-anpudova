@@ -44,9 +44,8 @@ namespace assignment {
   }
 
   void ArrayStack::Clear() {
-    for (int i = 0; i < size_; i++) {
-      data_[i] = 0;
-    }
+    delete data_;
+    data_ = nullptr;
     size_ = 0;
   }
 
@@ -74,9 +73,7 @@ namespace assignment {
       return false;
     } else {
       int* temp = new int[new_capacity];
-      for (int i = 0; i < size_; i++) {
-        temp[i] = data_[i];
-      }
+      std::copy(data_, data_ + size_, temp);
       delete data_;
       data_ = temp;
       capacity_ = new_capacity;

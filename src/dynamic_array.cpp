@@ -55,23 +55,22 @@ namespace assignment {
   bool DynamicArray::Set(int index, int new_value) {
     if (index > size_ || index < 0) {
       return false;
-    } else {
-      data_[index] = new_value;
-      return true;
     }
+    data_[index] = new_value;
+    return true;
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
     if (index > size_ || index < 0) {
       return false;
-    } else {
-      int value = data_[index];
-      for (int i = index; i < size_-1; i++) {
-        data_[i] = data_[i + 1];
-      }
-      size_--;
-      return value;
     }
+    int value = data_[index];
+    for (int i = index; i < size_-1; i++) {
+      data_[i] = data_[i + 1];
+    }
+    size_--;
+    return value;
+
   }
 
   void DynamicArray::Clear() {
@@ -83,9 +82,8 @@ namespace assignment {
   std::optional<int> DynamicArray::Get(int index) const {
     if (index > size_ || index < 0) {
       return std::nullopt;
-    } else {
-      return data_[index];
     }
+    return data_[index];
   }
 
   std::optional<int> DynamicArray::IndexOf(int value) const {
@@ -123,12 +121,11 @@ namespace assignment {
       return false;
     } else {
       int* temp = new int[new_capacity];
-      for (int i = 0; i < size_; i++) {
-        temp[i] = data_[i];
-      }
+      std::copy(data_, data_ + size_, temp);
       delete data_;
       data_ = temp;
       capacity_ = new_capacity;
+      return true;
     }
   }
 
