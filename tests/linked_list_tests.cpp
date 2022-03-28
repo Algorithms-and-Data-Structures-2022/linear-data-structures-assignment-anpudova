@@ -129,7 +129,7 @@ SCENARIO("LinkedList::FindNode") {
     REQUIRE(list.size() == size);
 
     WHEN("finding node at index in [0, size)") {
-      const int find_index = GENERATE_COPY(range(0, size));
+      const int find_index = GENERATE_REF(range(0, size));
       const int elem_at_index = elems[find_index];
 
       auto* found_node = list.FindNode(find_index);
@@ -176,7 +176,7 @@ SCENARIO("LinkedList::Get") {
     REQUIRE(list.size() == size);
 
     WHEN("getting an element at index in [0, size)") {
-      const int index = GENERATE_COPY(range(0, size));
+      const int index = GENERATE_REF(range(0, size));
 
       THEN("element at the specified index should be returned") {
         const int elem_at_index = elems[index];
@@ -226,7 +226,7 @@ SCENARIO("LinkedList::Set") {
     REQUIRE(list.size() == size);
 
     WHEN("setting an element at index in [0, size)") {
-      const int set_index = GENERATE_COPY(range(0, size));
+      const int set_index = GENERATE_REF(range(0, size));
       const int set_elem = GENERATE(take(5, random(0, 100)));
 
       REQUIRE(list.Set(set_index, set_elem));
@@ -272,7 +272,7 @@ SCENARIO("LinkedList::IndexOf") {
     REQUIRE(list.size() == size);
 
     WHEN("finding index of an existing element") {
-      const int index = GENERATE_COPY(range(0, size));
+      const int index = GENERATE_REF(range(0, size));
       const int find_elem = elems[index];
 
       const int find_index = std::distance(elems.cbegin(), std::find(elems.cbegin(), elems.cend(), find_elem));
@@ -295,7 +295,7 @@ SCENARIO("LinkedList::Contains") {
     REQUIRE(list.size() == size);
 
     WHEN("checking if it contains an existing element") {
-      const int index = GENERATE_COPY(range(0, size));
+      const int index = GENERATE_REF(range(0, size));
       const int elem = elems[index];
 
       THEN("contains should return true") {
@@ -335,7 +335,7 @@ SCENARIO("LinkedList::Insert") {
 
     AND_WHEN("inserting an element at any index != 0") {
       const auto pred = [](int idx) { return idx != 0; };
-      const int insert_index = GENERATE_COPY(filter(pred, range(-10, 11)));
+      const int insert_index = GENERATE_REF(filter(pred, range(-10, 11)));
 
       const int insert_elem = GENERATE(take(10, random(0, 100)));
 
@@ -401,7 +401,7 @@ SCENARIO("LinkedList::Insert") {
 
     if (size > 1) {
       AND_WHEN("inserting an element at index in [1, size)") {
-        const int insert_index = GENERATE_COPY(range(1, size));
+        const int insert_index = GENERATE_REF(range(1, size));
         const int insert_elem = GENERATE(take(10, random(0, 100)));
 
         CAPTURE(list.toVector(), insert_elem, insert_index);
@@ -496,7 +496,7 @@ SCENARIO("LinkedList::Remove") {
 
     if (size > 1) {
       AND_WHEN("removing an element at index in (0, size)") {
-        const int remove_index = GENERATE_COPY(range(1, size));
+        const int remove_index = GENERATE_REF(range(1, size));
 
         const auto removed = list.Remove(remove_index);
 
