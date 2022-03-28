@@ -35,7 +35,7 @@ namespace assignment {
   }
 
   bool DynamicArray::Insert(int index, int value) {
-    if (index > size_ || index < 0) {
+    if (index >= size_ || index < 0) {
       return false;
     } else {
       if (size_ >= capacity_) {
@@ -53,7 +53,7 @@ namespace assignment {
   }
 
   bool DynamicArray::Set(int index, int new_value) {
-    if (index > size_ || index < 0) {
+    if (index >= size_ || index < 0) {
       return false;
     }
     data_[index] = new_value;
@@ -61,7 +61,7 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Remove(int index) {
-    if (index > size_ || index < 0) {
+    if (index >= size_ || index < 0) {
       return false;
     }
     int value = data_[index];
@@ -80,7 +80,7 @@ namespace assignment {
   }
 
   std::optional<int> DynamicArray::Get(int index) const {
-    if (index > size_ || index < 0) {
+    if (index >= size_ || index < 0) {
       return std::nullopt;
     }
     return data_[index];
