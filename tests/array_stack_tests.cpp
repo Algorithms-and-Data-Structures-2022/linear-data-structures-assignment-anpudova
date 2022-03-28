@@ -77,7 +77,7 @@ SCENARIO("ArrayStack::Peek") {
 
   AND_GIVEN("stack with one or more elements") {
     const int capacity = GENERATE(range(1, 11));
-    const int size = GENERATE_COPY(range(1, capacity + 1));
+    const int size = GENERATE_REF(range(1, capacity + 1));
 
     const auto elems = utils::rand_array(size, 0, 100, true);
 
@@ -100,7 +100,7 @@ SCENARIO("ArrayStack::Resize") {
 
   GIVEN("stack with zero or more elements: size <= capacity") {
     const int capacity = GENERATE(range(1, 11));
-    const int size = GENERATE_COPY(range(0, capacity + 1));
+    const int size = GENERATE_REF(range(0, capacity + 1));
 
     const auto elems = utils::rand_array(size, 0, 100, true);
 
@@ -110,7 +110,7 @@ SCENARIO("ArrayStack::Resize") {
     REQUIRE(stack.capacity() == capacity);
 
     WHEN("resizing to a new capacity <= previous capacity") {
-      const int new_capacity = GENERATE_COPY(range(-10, capacity + 1));
+      const int new_capacity = GENERATE_REF(range(-10, capacity + 1));
 
       REQUIRE_FALSE(stack.Resize(new_capacity));
 
@@ -130,7 +130,7 @@ SCENARIO("ArrayStack::Resize") {
     }
 
     AND_WHEN("resizing to a new capacity > previous capacity") {
-      const int new_capacity = GENERATE_COPY(range(capacity + 1, capacity + 6));
+      const int new_capacity = GENERATE_REF(range(capacity + 1, capacity + 6));
 
       REQUIRE(stack.Resize(new_capacity));
 
@@ -154,7 +154,7 @@ SCENARIO("ArrayStack::Push") {
 
   GIVEN("stack with zero or more elements: size < capacity") {
     const int capacity = GENERATE(range(1, 11));
-    const int size = GENERATE_COPY(range(0, capacity));
+    const int size = GENERATE_REF(range(0, capacity));
 
     const auto elems = utils::rand_array(size, 0, 100, true);
 
@@ -254,7 +254,7 @@ SCENARIO("ArrayStack::Pop") {
 
   AND_GIVEN("stack with one or more elements") {
     const int capacity = GENERATE(range(1, 11));
-    const int size = GENERATE_COPY(range(1, capacity + 1));
+    const int size = GENERATE_REF(range(1, capacity + 1));
 
     const auto elems = utils::rand_array(size, 0, 100, true);
 
@@ -291,7 +291,7 @@ SCENARIO("ArrayStack::Clear") {
 
   GIVEN("stack with zero or more elements") {
     const int capacity = GENERATE(range(1, 11));
-    const int size = GENERATE_COPY(range(0, capacity + 1));
+    const int size = GENERATE_REF(range(0, capacity + 1));
 
     const auto elems = utils::rand_array(size, 0, 100, true);
 
